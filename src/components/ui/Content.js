@@ -1,17 +1,13 @@
 import React from 'react';
 
-const Content = ({ children, style = {}, isVisible }) => {
+const Content = ({ children, style = {}, className = '' }) => {
   return (
     <div
-      className={ `mt3 p1` }
-      style={{ ...styles.base, style }}>
-      { isVisible ? children : null }
+      className={ `p3 ${ className }` }
+      style={{ ...style }}>
+      { children }
     </div>
   );
-};
-
-const styles = {
-  base: {},
 };
 
 export default Content;

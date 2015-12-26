@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerStateReducer } from 'redux-router';
 import { reducer as formReducer } from 'redux-form';
-import counter from './counter';
-import session from './session';
+import section from './section';
 
 const rootReducer = combineReducers({
-  session,
-  counter,
+  section,
   router: routerStateReducer,
   form: formReducer,
 });
