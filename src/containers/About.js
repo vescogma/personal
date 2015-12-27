@@ -36,6 +36,10 @@ class About extends Component {
     window.addEventListener('scroll', this.setOffset.bind(this));
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.marginOffset !== this.props.marginOffset;
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.setOffset.bind(this));
   }
@@ -78,12 +82,11 @@ class About extends Component {
   setOffset = () => {
     const scrollMap = calculateMargin(
       window.scrollY,
-      { section: 'header', value: this.refs.header.offsetHeight },
-      [
-        { section: 'skills', value: this.refs.skills.offsetHeight },
-        { section: 'projects', value: this.refs.projects.offsetHeight },
-        { section: 'footer', value: this.refs.footer.offsetHeight },
-      ],
+      ['skills', 'projects'],
+      this.refs.header.offsetHeight,
+      this.refs.skills.offsetHeight,
+      this.refs.projects.offsetHeight,
+      this.refs.footer.offsetHeight,
     );
     this.props.moveSection(scrollMap);
   };
