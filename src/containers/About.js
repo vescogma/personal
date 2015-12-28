@@ -45,32 +45,37 @@ class About extends Component {
   }
 
   render() {
-    const { props } = this;
-
+    { props } = this;
     return (
       <div>
         <div className="background">
-          <div className="fit bg-red scroll-back scroll-0" ref="header">
+          <div
+            className="fit bg-red scroll-0"
+            ref="header">
             <Header />
           </div>
-          { props.scrollCollection.get('skills') === true ?
-            <div className="fit bg-gray scroll-back scroll-1" ref="skills">
-              <Skills />
-            </div> : '' }
-          { props.scrollCollection.get('projects') === true ?
-            <div className="fit bg-navy scroll-back scroll-2" ref="projects">
-              <Projects />
-            </div> : '' }
+          <div
+            className={`fit bg-yellow scroll-1 ${ props.scrollCollection.get('skills') ? isVisible : '' }`}
+            ref="back-skills">
+            <Skills />
+          </div>
+          <div
+            className={`fit bg-navy scroll-2 ${ props.scrollCollection.get('projects') ? isVisible : '' }`}
+            ref="back-project">
+            <Projects />
+          </div>
         </div>
-        <div ref="scroller" style={{ paddingTop: props.marginOffset }}>
-          { props.scrollCollection.get('skills') === false ?
-            <div className="fit bg-gray" ref="skills">
-              <Skills />
-            </div> : '' }
-          { props.scrollCollection.get('projects') === false ?
-            <div className="fit bg-navy" ref="projects">
-              <Projects />
-            </div> : '' }
+        <div ref="scroller">
+          <div
+            className={`fit bg-yellow ${ props.scrollCollection.get('skills') ? isVisible : '' }`}
+            ref="skills">
+            <Skills />
+          </div>
+          <div
+            className={`fit bg-navy ${ props.scrollCollection.get('projects') ? isVisible : '' }`}
+            ref="projects">
+            <Projects />
+          </div>
           <div className="fit bg-green" ref="footer">
             <Footer />
           </div>
@@ -80,16 +85,15 @@ class About extends Component {
   }
 
   setOffset = () => {
-    const scrollMap = calculateMargin(
+    this.props.moveSection(calculateMargin(
       window.scrollY,
       ['skills', 'projects'],
       this.refs.header.offsetHeight,
       this.refs.skills.offsetHeight,
       this.refs.projects.offsetHeight,
       this.refs.footer.offsetHeight,
-    );
-    this.props.moveSection(scrollMap);
-  };
+    ));
+  }
 }
 
 export default About;
