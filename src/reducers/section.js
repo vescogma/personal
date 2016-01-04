@@ -1,16 +1,15 @@
 import {
   MOVE_SECTION,
-  SET_MARGIN,
 } from '../constants';
 
 import { fromJS } from 'immutable';
 
 const INITIAL_STATE = fromJS({
   collection: {
-    skills: false,
-    projects: false,
+    header: false,
+    skill: false,
+    project: false,
   },
-  margin: 0,
 });
 
 function sectionReducer(state = INITIAL_STATE, action = {}) {
@@ -18,13 +17,7 @@ function sectionReducer(state = INITIAL_STATE, action = {}) {
 
   case MOVE_SECTION:
     return state.merge(fromJS({
-      collection: action.payload.collection,
-      margin: action.payload.margin,
-    }));
-
-  case SET_MARGIN:
-    return state.merge(fromJS({
-      margin: action.payload,
+      collection: action.payload,
     }));
 
   default:

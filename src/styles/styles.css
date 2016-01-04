@@ -11,8 +11,8 @@
   width: 100%;
 }
 
-.isVisible {
-  opacity: 0;
+.invis {
+  visibility: hidden;
 }
 
 .scroll-0 {
@@ -22,19 +22,13 @@
   right: 0;
   z-index: 0;
 }
-.scroll-1 {
+
+.scroll {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
-}
-.scroll-2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  bottom: 0;
 }
 
 .background {
